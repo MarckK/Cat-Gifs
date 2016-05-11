@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Sloth Gifs</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="row">
+			<h1 class="text-center"><strong>Sloth Gifs!</strong></h1></br>
+		<div class="text-center" id= "container">Images of Cats Coming!
+  		</div>
+
+		<div class="row">
+			<p>Made by <a href= "https://twitter.com/karamarck">Kara</a></p>
+		</div>
+
+
+  	
+  	</div>
+
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script>
+		$.ajax(
+		    {
+		    	url: "http://api.giphy.com/v1/gifs/search?q=sloth+funny&api_key=dc6zaTOxFJmzC&rating=pg&offset=1", 
+		  success: function(result){
+		         var finalImageString = "";
+		         for (var i = 0; i < result.data.length; i++){
+		         	var gif = result.data[i];
+		         	var imgString = "<p><img class='img-rounded' src='" + gif.images.original.url + "' /></br></p>";
+		         	finalImageString += imgString;
+		         }
+		        $('#container').html(finalImageString);
+		    },
+		  error: function(error){
+		        console.log(error);
+		  }
+		});
+	</script>
+</body>
+</html>
